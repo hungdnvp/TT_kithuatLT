@@ -1,0 +1,85 @@
+import sys
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtWidgets import*
+class themhoso(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: rgba(255, 255, 255,230);")
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(16)
+        font.setWeight(75)
+        ##~~~~~~
+        lable1 = QLabel(text="Mã lớp",font = font)
+        lable1.setStyleSheet("background-color: rgba(255, 255, 255, 0); color: rgba(255,255,255,240);")
+        lable2 = QLabel(text="Mã sinh viên",font = font)
+        lable2.setStyleSheet("background-color: rgba(255, 255, 255, 0); color: rgba(255,255,255,240);")
+        lable5 = QLabel(text="Điểm trung bình",font = font)
+        lable5.setStyleSheet("background-color: rgba(255, 255, 255, 0); color: rgba(255,255,255,240);")
+        lable3 = QLabel(text="Họ và tên",font = font)
+        lable3.setStyleSheet("background-color: rgba(255, 255, 255, 0); color: rgba(255,255,255,240);")
+        lable4 = QLabel(text="Ngày sinh",font = font)
+        lable4.setStyleSheet("background-color: rgba(255, 255, 255, 0); color: rgba(255,255,255,240);")
+
+        f = QtGui.QFont()
+        f.setCapitalization(QtGui.QFont.Capitalization.AllUppercase)
+        f.setFamily("Times New Roman")
+        f.setPointSize(16)
+        f.setWeight(75)
+        self.tb_malop = QLineEdit()
+        self.tb_malop.setFont(f)
+        # self.tb_malop.setGeometry(QtCore.QRect(160, 100, 251, 31))
+        self.tb_masv = QLineEdit()
+        self.tb_masv.setValidator(QtGui.QIntValidator(self.tb_masv))
+        self.tb_masv.setFont(font)
+        # self.tb_masv.setGeometry(QtCore.QRect(160, 100, 251, 31))
+        self.tb_hoten = QLineEdit()
+        self.tb_hoten.setFont(font)
+        # self.tb_hoten.setGeometry(QtCore.QRect(160, 100, 251, 31))
+
+        self.dateEdit = QDateEdit()
+        self.dateEdit.setDisplayFormat("yyyy/M/d")
+        # self.dateEdit.setGeometry(QtCore.QRect(160, 240, 161, 31))
+        self.dateEdit.setFont(font)
+
+        self.doubleSpinBox = QDoubleSpinBox()
+        # self.doubleSpinBox.setGeometry(QtCore.QRect(160, 310, 81, 31))
+        self.doubleSpinBox.setFont(font)
+        self.doubleSpinBox.setDecimals(1)
+        self.doubleSpinBox.setMaximum(10.0)
+        self.doubleSpinBox.setSingleStep(0.1)
+
+        self.bt_Add = QPushButton(text="Thêm hồ sơ",font = font)
+        self.bt_Add.setFixedHeight(40)
+        self.bt_Add.setStyleSheet("background-color: rgb(255, 0, 0);color: rgb(255,255,255);")
+        layout = QFormLayout()
+        # layout.setContentsMargins(0,0,80,0)
+
+        #####~~~~~
+        layout.setContentsMargins(150,40,0,0)
+        layout.setHorizontalSpacing(75)
+        layout.setVerticalSpacing(10)
+        layout.addRow(lable1,self.tb_malop)
+        layout.addRow(lable2,self.tb_masv)
+        layout.addRow(lable3,self.tb_hoten)
+        layout.addRow(lable4,self.dateEdit)
+        layout.addRow(lable5,self.doubleSpinBox)
+        layout.addWidget(self.bt_Add)
+
+        self.setLayout(layout)
+    def refresh_gui(self):
+        self.tb_malop.setText('')
+        self.tb_masv.setText('')
+        self.tb_hoten.setText('')
+        self.dateEdit.setDate(QtCore.QDate(2000,1,1))
+        self.doubleSpinBox.setValue(0)
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = themhoso()
+    window.tb_malop.setText('quang Hung')
+    # x =int(window.tb_masv.text())
+    # y = str(window.tb_hoten.text())
+    # sv1 = sinhvien('bdatt',100,'hoang thuy linh',ns,8.6) 
+    window.show()
+    sys.exit(app.exec_())
+        
